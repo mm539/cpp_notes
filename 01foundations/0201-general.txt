@@ -1,0 +1,108 @@
+These notes are based off the Udacity c++ course. They are divided in a manner similar to that found in the course. 
+
+For some subject areas, I have added content that was not in the course in order to expand my own knowledge & understanding.
+
+================================================================
+
+1. c++ and c
+2. c++ core guidelines
+3. compilers
+4. choosing the c++ compilation standard
+5. build tools
+
+================================================================
+
+1. c++ and c
+
+c++ is:
+1. compiled (must be compiled before run)
+2. high performance (it is fast to run)
+
+c++ is like c but:
+1. has classes
+2. has "strongs" (strongs are user-defined types that do not allow for implicit conversion to other types)
+
+c++11 came out in 2011 and introduced many things to the language:
+1. move semantics (?)
+2. variatic templates (?)
+3. initializer lists (?)
+4. the auto keyword (?)
+5. lamda expressions (?)
+6. null pointer (?)
+7. constant expression (?)
+8. range-based for loops (?)
+9. smart-pointers (?) - something about memory management
+
+c++17 came out in 2017. it was also a major release that gave
+c++ many modern tools
+
+c++ is used for:
+1. embedded systems
+  - an embedded system is a type of computer system that
+    i. is composed of a computer processor, memory, and io peripheral devices
+    ii. has a dedicated function within a larger mechanical or electronic system
+
+2. IoT
+3. automobiles
+4. high-performance servers
+
+================================================================
+
+2. c++ core guidelines:
+- a set of rules that says "these are the places where you are not
+not strongly typed" (? what does this mean ?)
+
+- 25 pages of "philosophy" of the overall design
+- a set of best practices, recommendations, and rules (several hundred!)
+- "c++" core guidelines is a system that is underdevelopment that
+will have the functionality to analyze code and give recommendations
+based on the ^^
+
+================================================================
+
+3. Compilers
+
+Compiling is the process of taking human-readable source code and converting it into machine-readable object (or in windows, executable) files.
+
+There is no official c++ compiler. Instead, there are different ones developers can use.
+  1. GNU Compiler Collection (gcc) - an open-source, cross platform compiler
+    i. it automatically links the c++ standard library
+    ii. there are different compiler programs. we used g++
+  2. Cygwin (GNU c++)
+  3. Apple c++
+  4. microsoft visual ++
+  5. intel c++
+  6. clang c++
+    ...
+  to see more compilers:
+  https://www.stroustrup.com/compilers.html
+
+To see how source code is put together and compiled, see IMG_c-translation-phases.svg
+
+================================================================
+
+4. choosing the c++ compilation standard
+
+be aware that there are different standards.
+some libraries are standard specific. for example, the filesystem library only works on c++17 and later.
+
+================================================================
+
+5. Build Tools
+
+1. Make
+
+GNU Make is a widely-used build tool that relies on Makefiles to automate the process of building a project. 
+
+Makefiles are used to help decide which parts of a large program need to be recompiled.
+
+see https://makefiletutorial.com/
+
+2. CMake
+
+CMake is a cross-platform tool.
+It's difficult to use. Despite having spent hours trying to figure out, I never understood how to use it.
+
+
+Note: There are other build tools.
+Note2: MicrosoftVisualStudio comes with a built-in build tool.

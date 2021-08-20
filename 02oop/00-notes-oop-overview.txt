@@ -1,0 +1,151 @@
+1. Structures and Classes
+2. Structures and Types
+3. Classes
+4. Structures vs Classes
+5. Access Specifiers
+
+7. Composition
+8. Multi-Level Inheritance
+9. Friends
+10. Multiple Inheritance
+11. Polymorphisim
+12. Generic Programming
+
+========================================================
+
+1. Structures and Classes
+
+  Both structs and classes are objects.
+
+  Generally, we should avoid instantiated an object wth undefined members. This can be achieved by:
+    i. initializing members within the class/structure definition
+    ii. using initializer lists [CHECK IF THIS IS TRUE!]
+
+========================================================
+
+
+2. Structure and Types
+
+
+  i. What is a struct?
+    - A structure is a user-defined type that allows developers to aggregate data relevant to their needs.
+
+  struct Square;
+  {
+    int a;
+  };
+
+  struct Rectangle {
+    float length;
+    float width;
+  }
+
+  int value;  <---- the variable value is of type int
+  Square square; <---- type Square
+  Sphere earth;
+
+  ii. types:
+    - the fundamental types are also called "primitives"
+    - the standard library includes out types such as:
+      std::size_t
+      std::string
+
+========================================================
+
+3. Classes
+
+
+Classes are a way to allow developers to aggregate data relevant to their needs that is also related to each other (e.g. our Date class). If the data is independent from each other, use a struct.
+
+========================================================
+
+4. Structures VS Classes
+
+
+  Use structures instead of classes when:
+  1. there is just aggregate data
+  2. there ARENT any invariants* or logical conditions
+
+  Use classes when:
+  1. member variables are related
+
+  By default, structure members are public.
+  By default, class members are private.
+
+  Class - In addition to public and private, classes also have the "protected" access modifier.
+
+
+  * invariant
+  This term is conceptual. An invariant statement describes a condition that should always be true in an object life. It is up to the developer to write the code to ensure that the condition is always true.
+
+  Enforcing an invariant can be achieved by only allowing variable access//modification through accessors & mutators.
+
+  however, it looks like some frameworks/tools have a macro for INVARIANT? I'm not sure if this is true or not.
+
+
+========================================================
+
+5. Access Specifiers
+
+  a. Access specifiers are keywords that specify:
+    i. the manner in which members of the class/struct are accessible to the outside
+    ii. the access specifiers of members in any child classes of the parent class (note: the type of inheritance specified in the child class's declaration is also a factor in determining the access specifiers of the members of the child class)
+
+  b. There are three access specifiers:
+    i. public
+      - members are directly accessible
+    ii. private
+      - memebers are not directly accessible
+    iii. protected (only for classes)
+
+
+========================================================
+
+6. Inheritance
+
+classes can inherit from each other
+
+========================================================
+7. Composition
+
+classes can be made up of each other
+
+========================================================
+
+8. Multi-Level Inheritance
+
+grandparents and such
+
+========================================================
+
+9. Friends
+
+if you consider someone a friend, you let them use your stuff
+
+========================================================
+
+10. Multiple Inheritance
+
+a class can inherit from multiple classes
+
+in the case of having an abstract parent (a class that has a pure virtual function), something called the diamond problem can arise.
+
+========================================================
+
+11. Polymorphisim
+
+overriding - same function signatures, but child classes have their own versions
+  virtual functions
+  hidden functions
+
+  as far as i can tell, hidden functions should be avoided. unpredictable behavior.
+
+overloading -
+  same function names but different parameters
+  operator overloading
+
+========================================================
+
+12. Generic Programming
+
+template functions and template classes

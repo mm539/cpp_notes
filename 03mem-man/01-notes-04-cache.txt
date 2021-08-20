@@ -1,0 +1,59 @@
+
+1. Cache
+2. Types of Cache
+3. Temporal and Spatial Locality
+4. Increasing runtime performance
+5. Cache friendly coding
+
+===========================================================================
+
+1. Cache
+
+Cache is much faster but also a lot smaller than standard RAM.
+
+Cache is the intermediary between slow memory and fast memory. It:
+1. grabs data from the slow memory which it believes will soon be needed by the CPU
+2. purges memory that will not be needed anytime soon
+
+
+===========================================================================
+
+2. Types of Cache
+
+    Level 1 cache is the fastest and smallest memory type in the cache hierarchy. In most systems, the L1 cache is not very large. Mostly it is in the range of 16 to 64 kBytes, where the memory areas for instructions and data are separated from each other (L1i and L1d, where "i" stands for "instruction" and "d" stands for "data". Also see "Harvard architecture" for further reference). The importance of the L1 cache grows with increasing speed of the CPU. In the L1 cache, the most frequently required instructions and data are buffered so that as few accesses as possible to the slow main memory are required. This cache avoids delays in data transmission and helps to make optimum use of the CPU's capacity.
+
+    Level 2 cache is located close to the CPU and has a direct connection to it. The information exchange between L2 cache and CPU is managed by the L2 controller on the computer main board. The size of the L2 cache is usually at or below 2 megabytes. On modern multi-core processors, the L2 cache is often located within the CPU itself. The choice between a processor with more clock speed or a larger L2 cache can be answered as follows: With a higher clock speed, individual programs run faster, especially those with high computing requirements. As soon as several programs run simultaneously, a larger cache is advantageous. Usually normal desktop computers with a processor that has a large cache are better served than with a processor that has a high clock rate.
+
+    Level 3 cache is shared among all cores of a multicore processor. With the L3 cache, the cache coherence protocol of multicore processors can work much faster. This protocol compares the caches of all cores to maintain data consistency so that all processors have access to the same data at the same time. The L3 cache therefore has less the function of a cache, but is intended to simplify and accelerate the cache coherence protocol and the data exchange between the cores.
+
+===========================================================================
+
+3. Spatial Locality and Temporal Locality
+
+Look at 01-03-mem-speed.png to see how the latency of different memory access operations compare.
+
+
+
+===========================================================================
+
+4. Increasing runtime performance
+
+In algorithm design, programmers can exploit two principles to increase runtime performance:
+
+    Temporal locality means that address ranges that are accessed are likely to be used again in the near future. In the course of time, the same memory address is accessed relatively frequently (e.g. in a loop). This property can be used at all levels of the memory hierarchy to keep memory areas accessible as quickly as possible.
+
+    Spatial locality means that after an access to an address range, the next access to an address in the immediate vicinity is highly probable (e.g. in arrays). In the course of time, memory addresses that are very close to each other are accessed again multiple times. This can be exploited by moving the adjacent address areas upwards into the next hierarchy level during a memory access.
+
+===========================================================================
+
+5. Cache friendly coding
+
+I had a difficult time with this topic. The results I got on my local machine were vastly different from the results the instructor got on his.
+
+This is not a cause for panic though. The notes for this section even said that results could vary greatly depending on the machine being used.
+
+Takeaway:
+  be conscious of the machine your using and how it handles cache
+  know these terms:
+    row
+    column

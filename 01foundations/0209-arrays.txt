@@ -1,0 +1,15 @@
+Arrays are a lower level data structure than vectors (and can be slightly more efficient in terms of memory and element access). 
+
+Arrays have a fixed length.
+
+Arrays may require careful memory mangement, depending on how they are used. 
+
+Arrays represent a fixed size chunk of memory.
+
+Bjarne says: 
+- whenever you declare an array, it usually turns into a pointer and forgets the amount of memory that's allocated
+
+- you should wrap an array inside of a vector to manage its memory
+  - how to do this?
+
+- "I don't think it belongs in application code"

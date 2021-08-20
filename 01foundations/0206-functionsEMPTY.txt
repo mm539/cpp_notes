@@ -1,0 +1,49 @@
+
+need to differentiate between
+functions
+inline functions
+macro functions
+
+
+is any of these old notes below still relevant? 2021/06/01
+
+
+### functions 01
+
+#include <iostream>
+using std::cout;
+
+// function declared and defined here
+int AdditionFunction(int i, int j){
+    return i + j;
+}
+
+int main(){
+    audo d = 3;
+    auto f = 7;
+    cout << AdditionFunction(d, f) << "\n";
+}
+
+### functions 02 (vector sum)
+
+#include <iostream>
+#include <vector>
+using std::cout;
+using std::vector;
+
+int VAdditionFunction(vector<int> v){
+    auto s = 0;
+    for (int i: v){
+        s = s + i;
+    }
+    return s;
+}
+
+### void type for functions do not require a return at the end.
+
+### print board assignment
+how to print something that looks like:
+010000
+010000
+010000
+000010

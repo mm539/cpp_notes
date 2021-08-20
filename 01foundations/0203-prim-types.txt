@@ -1,0 +1,108 @@
+
+1. primitive types
+2. Literals and Variables
+3. Signed and Unsigned Int
+4. Signed and Unsigned Char
+
+
+ref: https://en.cppreference.com/w/cpp/language/types
+
+=========================================================
+
+1. Primitive/Fundamental types
+
+  a. Primitive types include:
+    i. void
+    ii. int
+    iii. bool
+    iv. character
+    v. floating point
+
+    Note: The choices made by each implementation about the sizes of the fundamental types are known as the "data model."
+
+    i. void
+      std::nullptr_t is the type of the null pointer literal, nullptr.
+
+=========================================================
+
+2. Literals and Variables
+
+  a. The term literal refers to fixed values that the program may not alter. Literals are also called constants.
+
+    i. int literals:
+      212
+      215u
+      0x4b
+
+    ii. floating point literals
+      3.14
+      3115E-2
+
+    iii. boolean literals
+      true
+      false
+
+    iv. character literals
+      character literals are SINGLE characters enclosed in single quotes 'a' (NEED TO FACT CHECK)
+
+  b. What is the relationship between literals and variables?
+    ????
+    maybe this can be answered in the futures
+    some termscome to mind
+      lvalues and r values
+      references
+
+
+=========================================================
+
+3. Signed vs Unsigned
+
+  An unsigned int is one that CANNOT represent a negative value.
+  A signed int can be desginated as positive or negative.
+
+  Which one should you use? It depends on the use-case, but most of the time signed ints are more appropriate.
+
+  By default, ints are set to signed.
+
+
+=========================================================
+
+4. Signed and Unsigned Char
+
+  In c++, there are 3 distinct character types:
+    char
+    signed char
+    unsigned char
+
+  i. char
+    unqualified chars are used for:
+      - character literals such as 'a' or 'b'
+      - C strings like "abcde" (? array of chars??)
+
+  ii. signed and unsigned char
+    if you are using character types as numbers, use:
+      - signed char gives you at least the -127 to 127 range
+      - unsigned char gives you at least the 0 to 255 range
+
+=========================================================
+=========================================================
+=========================================================
+???????????????????
+
+#include <iostream>
+#include <string>
+using std::cout;
+
+int main() {
+    // declaring and initializing an int variable
+    int a = 9;
+
+    // declaring a string variable
+    std::string b;
+
+    // initializing the string b
+    b = "this is a string";
+
+    cout << "this is an int: " << a << "\n";
+    cout << "this is a string: " << b << "\n";
+}

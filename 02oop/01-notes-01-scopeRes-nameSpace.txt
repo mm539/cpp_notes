@@ -1,0 +1,39 @@
+
+1. Scope Resolution
+2. Namespaces
+
+
+=============================================
+
+1. Scope Resolution
+
+  C++ allows different identifiers (variable and function names) to have the same names as long as they have a different scope.
+
+  In some cases, a scope can overlap, in which case the compiler will need assistance in determining which identifier the programmer meant to use.
+
+  The process of determining which identifier to use is called "scope resolution."
+
+  The :: is called the scope resolution oeprator.
+
+  Examples:
+    std::move(); \\ move semantics
+    Person::move(); \\ Call the move the function that is a member of the Person class.
+    std::map m; \\ Initialize the map container from the C++ Standard Library.  
+
+
+
+=============================================
+
+2. Namespaces
+
+
+  Namespaces allow programmers to group logically related variables and functions together. Namespaces also help to avoid conflicts between to variables that have the same name in different parts of a program.
+
+  using std::cout;
+
+
+=============================================
+
+
+
+=============================================

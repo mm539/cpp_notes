@@ -1,0 +1,65 @@
+
+1. Value Categories
+2. Origins: lvalues and rvalues
+3. lvalue references
+4. rvalue references
+
+======================================================================
+
+1. Value Categories
+
+  Every expression in c++ has a type and belongs in a value category. When objects are created, copied, or moved during evaluation of an expression, the compiler uses these value expressions to decide which method to call or which operator to use. 
+
+  Prior to c++11, there were only two value categories. Now there are as many as five.
+
+  Here, we will discuss only Lvalues and Prvalues. 
+    i. Lvalues
+      - have an address that can be accessed
+      - they are expressions whose evaluation by the compiler determines the identity of objects or functions
+      - can be thought of as "named containers for rvalues"
+
+    ii. Prvalues
+      - do NOT have a directly accessible address
+      - they are temporary expressions used to:
+        - initialize objects
+        - compute the value of the operand of an operator
+      - they are commonly referred to as rvalues
+
+  But to learn about the other categories, look at:
+    see 05-PICS-01-value-cat.png
+    https://docs.microsoft.com/en-us/cpp/cpp/lvalues-and-rvalues-visual-cpp?view=msvc-160
+
+======================================================================
+
+2. Origins: lvalues and rvalues
+
+  The two characters l and r are originally derived from the perspective of the assignment operator =, which always expects a rvalue on the right, and which it assigns to a lvalue on the left. In this case, the l stands for left and r for right:
+
+    int i = 42;  // lvalue = rvalue;
+
+  However, with many operators this left-right view is not entirely correct.
+
+======================================================================
+
+3. lvalue references
+
+  An lvalue references can be considered as an alternative name for an object. It is a reference that binds to an lvalue and is declared using an optional list of specifiers (no further info about this) followed by the reference declarator:
+    int j;
+    int &i = j;
+
+  A change to either i or j will affect the same memory location on the stack.
+
+  One of the primary use-cases for lvalue references is pass-by-reference semantics:
+    void myFunction(int &a){...}
+
+
+======================================================================
+
+4. rvalue references
+
+  rvalue references can be identified from the double & after a typename. With this operator, it is possible to store and modify an rvalue, ie a temporary object that would otherwise be lost quickly.
+
+  rvalue references are lvalues
+
+
+======================================================================

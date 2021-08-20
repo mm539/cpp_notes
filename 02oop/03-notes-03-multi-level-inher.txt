@@ -1,0 +1,7 @@
+Multi-level inheritance refers to the type of relationships between classes:
+
+class Vehicle {};
+class Car: public Vehicle {};
+class Sedan: public Car {};
+
+Sedan inherits from Car which in turn inherits from Vehicle.

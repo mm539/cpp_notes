@@ -1,0 +1,71 @@
+1. What is a lambda expression?
+2. How are lambdas used in c++?
+3. Parts of a lambda
+4. Starting threads with lambdas
+
+===========================================================================
+
+1. What is a lambda expression?
+
+  A c++ lambda expression, or lambda for short, is a prvalue expression that:
+    i. has the format [](){}
+    ii. can be unnamed
+    iii. can capture variables from the surrounding context
+    iv. is a functor // function object
+      - it has a type and can be stored and passed around
+      - its result object is called a closure (which can be called using () )
+    v. is unable to execute and return functions
+    vi. 
+
+  Lambdas do not exist at runtime. The runtime effect is a generation of an object.
+
+  The difference between a Lambda and the corresponding closure is similar to the distinction between a class and an instance of the class. A class only exists in the source code while the objects created from it exist at runtime. 
+
+  My Sidenote:
+  I've seen lambdas referred to as anonymous inline functions. I don't believe these terms are interchangeable because I think (but am not sure) that a lambda can be named. Take for instance:
+    auto lambda0 = [](){};
+
+===========================================================================
+
+2. How are lambdas used in c++?
+
+Lambdas are often used as arugments for functions that can take a callable object.
+
+===========================================================================
+
+3. Parts of a lambda
+
+  A lambda has three parts:
+    i. [] capture list
+      By default, variables outside of the main part {} of the lambda cannot be accessed. By adding a variable to the capture list, it becomes available either as a copy or as a reference.
+
+      By default, variables in the capture block can not be modified within the lambda. Using the keyword "mutable" allows the lambda to modify the parameters captured by copy and call their non-const member functions with the body of the lambda. 
+
+
+    ii. () parameter list
+      The way parameters are passed to a lambda is basically identical to how they are called to a regular function. 
+
+      If a lambda takes no arguments, these parentheses can be omitted. (except when mutable is used) 
+
+    iii. {} main part 
+
+===========================================================================
+
+4. Starting threads with lambdas
+
+  A Lambda, just like other objects, may be:
+  i. copied
+  ii. passed as a parameter
+  iii. stored in a container
+  iv. etc.
+
+  A Lambda has its own scope and lifetime.
+
+  Programmers need to take special care when capturing local objects by reference because a Lambda's lifetime may exceed the lifetime of its capture list. This is important in multi-threaded programs.
+
+
+==================================================================
+
+mutable -> lambda-declarator that removes const qualification from parameters captured by copy (since C++11) 
+
+my observation is that FOR capture lists it allows the lambda to create a copy of the variable that can be modified

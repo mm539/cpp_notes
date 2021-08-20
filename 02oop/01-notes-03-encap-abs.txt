@@ -1,0 +1,44 @@
+
+Encapsulation and Abstraction
+
+1. Encapsulation and Abstraction
+2. Relationship between Encapsulation and Abstraction
+3. Accessors and Mutators
+4. Bjarne Says
+
+========================================================================
+
+1. Encapsulation and Abstraction
+
+  Encapsulation and Abstraction are two of the core properties of OOP.
+
+  i. Encapsulation:
+    - Encapsulation is the bundling of related data in a single class. We can prevent the accidental modification of those properties by using accessors and mutators.
+
+    - it is best practice to make our class's as lightweight as possible. members should be necessary/vital to the identity of the class.
+
+  ii. Abstraction refers to the separation of a class's implementation from its interface. It is the idea that users of the class don't need to know how a class works, they only need to know the interface (what comes IN and what comes OUT).
+
+========================================================================
+
+2. What is the relationship between abstraction and encapsulation?
+
+  Encapsulation is the binding together of data. Abstraction is the interface to interact with that data.
+
+========================================================================
+
+3. Accessors and Mutators
+
+We use accessors and mutators to control how users access and modify our data. We can put invariant logic in mutators to make sure that valid data is being put into a class.
+
+Generally speaking, an accessor function should be designated as const.
+
+========================================================================
+
+4. Bjarne Says
+
+  Re encapsulation:
+    Bjarne spoke of vectors. How with vectors, we don't want users to interact with the private parts of the data, so instead we give them public member [functions].
+
+  Re abstraction:
+    Bjarne spoke of how hardware is the lowest level and everything on up is just abstraction upon abstraction on each other.

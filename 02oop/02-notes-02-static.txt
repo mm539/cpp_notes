@@ -1,0 +1,32 @@
+
+1. the keyword static
+2. Static Member Variables and Methods
+
+=====================================================================
+
+1. the keyword static
+
+  The keyword static has different meanings depending on where it's used:
+    i. declarations of namespace members with static storage duration and internal linkage
+    ii. definitions of block scope variables with static storage duration and initialized once
+    iii. declarations of class members not bound to specific instances
+
+  As this section of notes is dedicated to OOP, we'll be looking at use #3.
+
+=====================================================================
+
+2. Static Member Variables and Methods
+
+  i. A static member belongs to the entire class, instead of to a specific instance of the class.
+
+  ii.. A static member is created only once and then shared by all instances of the class.
+    --> so if a static member gets changed, then all members of the class will see that change
+
+  iii. static members can be defined/instantiated
+    i. within their class IF the keyword constexpr is also used (remember: constexpr tells the compiler to evalute a value at compile time)
+
+    ii. in the global scope.
+
+
+  iv. We can use static methods to use functions without ever creating an instance of a class.
+    - Static methods can be used to group together related operations.

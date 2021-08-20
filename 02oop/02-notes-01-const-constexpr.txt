@@ -1,0 +1,19 @@
+C++ supports two notions of immutability
+
+1. const - only evaluated at run time
+
+compiler checks if value is not changed
+
+2. constexpr - can be evaluated at compile time
+
+***************
+
+
+A common usage of const is to guard against accidentally changing a variable
+
+The distinction between const and constexpr is subtle.
+
+In general, though, const is much more common than constexpr.
+
+When in doubt, use const, especially to guard against accidentally modifying a variable.
+

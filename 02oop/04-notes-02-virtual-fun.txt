@@ -1,0 +1,93 @@
+
+Virtual Functions & Overriding
+
+1. Virtual Functions & Overriding
+2. Virtual Functions
+3. Override Keyword
+4. Function Hiding
+5. Final
+
+=========================================================
+
+1. Virtual Functions & Overriding
+
+Overriding is accomplished through virtual functions. The purpose of virtual functions is to:
+  i. maintain order and organization
+  ii. prevent incorrect usage
+
+=========================================================
+
+2. Virtual Functions
+
+  i. Virtual Functions
+    Virtual functions are a polymorphic feature. They are declared (and possibly defined) in a base class:
+
+      virtual void DoSomething(){}
+
+    As far as I can tell, adding the virtual keyword doesn't have any effect on how the function or base class work. So, why bother?
+    2021/06/25
+    WRONG
+    The virtual keyword is VERY important. It lets the compiler know when it should look for another an overriding function.
+    remember hackerrank hotel example.
+
+  ii. Pure Virtual Functions
+    If a class has a pure virtual function, it becomes an abstract class. Instances of abstract classes CANNOT be instantiated.
+
+    Pure virtual functions are declared&defined as follows:
+
+      virtual void DoSomething() = 0;
+
+    The "= 0" means the function is declared but not defined.
+
+=========================================================
+
+3. Override Keyword
+
+  For the virtual function:
+    virtual void DoSomething() const {}
+  The replacement function can take the form:
+    void DoSomething() const override {}
+
+  The override keyword is not necessary, but it is good practice. It let's the compiler and future programers know that a function is supposed to override another.
+
+=========================================================
+
+4. Function Hiding
+
+
+  Function hiding is closely related, but distinct from, overriding.
+
+  A derived class hides a base class function, as opposed to overriding it, if the base class function is not specified to be virtual.
+
+  Example:
+
+    class Cat { // Here, Cat does not derive from a base class
+    public:
+      std::string Talk() const { return std::string("Meow"); }
+    };
+
+    class Lion : public Cat {
+    public:
+      std::string Talk() const { return std::string("Roar"); }
+    };
+
+  In this example, Cat is the base class and Lion is the derived class. Both Cat and Lion have Talk() member functions.
+
+  When an object of type Lion calls Talk(), the object will run Lion::Talk(), not Cat::Talk().
+
+  In this situation, Lion::Talk() is hiding Cat::Talk(). If Cat::Talk() were virtual, then Lion::Talk() would override Cat::Talk(), instead of hiding it. Overriding requires a virtual function in the base class.
+
+  The distinction between overriding and hiding is subtle and not terribly significant, but in certain situations hiding can lead to bizarre errors, particularly when the two functions have slightly different function signatures.
+
+
+=========================================================
+
+5. Final
+
+The final keyword can be used to:
+  i. set a class up so that it won't be inherited from
+  ii. prevent a member function from being overriden
+
+https://isocpp.org/wiki/faq/strange-inheritance
+
+I feel I could spend a long time reading this last resource. But I have no time now. 2021/06/24

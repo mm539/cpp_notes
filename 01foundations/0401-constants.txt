@@ -1,0 +1,8 @@
+c++ supports two notions of immutability, designated by the following keywords:
+  i. const 
+    - a const variable can be evaluated at run time
+    - "I promise not to change this value after it is initialized"
+  ii. constexpr 
+    - a constexpr variable can be evaluated at compile time, but NOT at run time
+    - constexpr is primarily used to specify constants
+

@@ -1,0 +1,79 @@
+Promises and Futures
+
+1. basics
+2. future::get and future::wait
+3. future::wait_for
+4. std::future_status
+5. cplusplus.com descriptions of get, wait, wait_for
+6. exceptions
+
+
+===========================================================================
+
+1. basics
+
+  Promises and futures enable the developer to send data from a child thread to a parent thread.
+
+  The communication channel can only be used once.
+
+
+===========================================================================
+
+2. future::get and future::wait
+
+  Calling future::get
+    i. blocks the thread until the shared state is ready 
+    ii. then retrieves it.
+
+  In some situations it might be useful to separate the waiting for the content from the actual retrieving. We can use future::wait to do this.
+
+===========================================================================
+
+3. future::wait_for
+
+  If you want to limit how much time the thread spends waiting, use wait_for.
+
+  future::wait_for takes a time duration as input. It blocks until the time duration input has elapsed OR until the shared state is ready, whichever comes first.
+
+  wait_for returns a value of type future_status
+
+===========================================================================
+
+4. std::future_status
+
+  std::future_status is an enum class. There are 3 labels:
+    future_status::ready    -> 0
+    future_status::timeout  -> 1
+    future_status::deferred -> 2
+
+===========================================================================
+
+5. cplusplus.com descriptions of get, wait, wait_for
+
+
+  1. get. generally returns std::move(x)
+    Returns the value stored in the shared state (or throws its exception) when the shared state is ready.
+
+    If the shared state is not yet ready (i.e., the provider has not yet set its value or exception), the function blocks the calling thread and waits until it is ready.
+
+  2. wait. returns nothing
+    Waits for the shared state to be ready.
+
+    If the shared state is not yet ready (i.e., the provider has not yet set its value or exception), the function blocks the calling thread and waits until it is ready.
+
+    Once the shared state is ready, the function unblocks and returns without reading its value nor throwing its set exception (if any).
+
+  3. wait_for. returns a value of type future_status
+    Waits for the shared state to be ready for up to the time specified by rel_time.
+
+    If the shared state is not yet ready (i.e., the provider has not yet set its value or exception), the function blocks the calling thread and waits until it is ready or until rel_time has elapsed, whichever happens first.
+
+    When the function returns because its shared state is made ready, the value or exception set on the shared state is not read, but all visible side effects are synchronized between the point the provider makes the shared state ready and the return of this function.
+
+    If the shared state contains a deferred function (such as future objects returned by async), the function does not block, returning immediately with a value of future_status::deferred.
+
+===========================================================================
+
+6. exceptions
+
+see .cpp file

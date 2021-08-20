@@ -1,0 +1,41 @@
+
+0. Message Queue
+1. Condition variables
+2. Spurious Wakeups
+
+
+=============================================================================
+
+0. Message Queue
+
+  The purpose of this section is to make a message queue. 
+
+  Imagine we have a queue that waits for incoming data. When there is no incoming data, it sleeps. Whenever it receives data, it wakes up and processes it, and then goes back to waiting.
+
+  We want the queue to have the ability to process many sources of data at the same time in a safe and efficient way.
+
+  For this, we need multi-threaded librarys, we need mutexes, and finally, we need condition variables.
+
+=============================================================================
+
+1. Condition variables
+
+  Condition variables provide a signaling mechanism that can be re-used. The following functions can provide basic functionality:
+    wait - blocks the current thread
+    notify_one - unblocks a single waiting thread
+    notify_all - unblocks all waiting threads at once
+
+  A condition variable is ultimately a low-level building block for more advanced communication protocols. It has no memory of its own. It does not remember notifications. For these reasons, it should be used with other constructs, such as mutexes (actually, I'm not sure if it can be used with other things)
+
+  To get an excellent, detailed look at why condition variables should be used with mutexes, see:
+    ../00-udacity-workspace-notes-concurrency/04_condition-vars-message-qs
+
+  But yeah, that's the bottom line. To make a message queue, use conditon variables with mutexes && locks:
+    _cond.wait(_mtx);
+
+=============================================================================
+
+
+2. Spurious Wakeups
+
+   _cond.wait(_mtx, [this](){ go back to sleep if this expression returns true} );

@@ -1,0 +1,36 @@
+
+hm. 
+should i rename this file?
+i can't think of any more important info related to expressions.
+
+1. pre and post increment/decrement expressions
+
+
+=========================================================
+
+1. pre and post increment/decrement expressions
+
+
+++i;
+i++;
+
+=========================================================
+
+#include <iostream>
+using std::cout;
+
+int main(){
+    int i = 1;
+
+    // post-increments assigns i to c and then increments it
+    auto c = i++; // c is 1, i is 2
+
+    // pre-increment increments i, then assigns it to c
+    c = ++i; // c is 3, i is 3
+}
+
+=========================================================
+
+
+=========================================================
+

@@ -1,0 +1,84 @@
+
+1. if block
+2. while loop
+3. for loop
+
+=========================================================
+
+1. if block
+
+#include <iostream>
+using std::cout;
+
+int main(){
+   int j = 3;
+   if (j == 3){
+      cout << "j is 3!";
+   }
+}
+
+=========================================================
+
+2. while loop
+
+#include<iostream>
+using std::cout;
+
+int main() {
+    auto i = 0;
+    while (i < 11){
+        cout << i << "\n";
+        i++;
+    }
+}
+
+=========================================================
+
+3. for loop
+
+  i. Standard for-loop
+
+    #include <iostream>
+    using std::cout;
+
+    int main(){
+        for (int i = -3; i < 11; i++){
+            cout << i << "\n";
+        }
+    }
+
+  ii. for loop with a container (1d vector)
+
+    #include <iostream>
+    #include <vector>
+    using std::vector;
+    using std::cout;
+
+    int main(){
+        vector<int> a = {0, 1, 2, 3, 4, 5};
+        for (int i: a){
+            cout << i << "\n";
+        }
+    }
+
+  iii. for loop with a container (2d vector)
+
+    #include <iostream>
+    #include <vector>
+    using std::cout;
+    using std::vector;
+
+    int main(){
+        vector<vector<int>> b {{1, 2}
+                              {3, 4}
+                              {5, 6}};
+        for (vector i: b){ // could have also done for(vector<int> i: b){ ...
+            for (int j: i){
+                cout << j << "\n";
+            }
+        }
+    }
+
+  iv. for loop with a container (1d array)
+
+  v. for loop with a container (2d array)

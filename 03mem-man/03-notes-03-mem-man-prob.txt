@@ -1,0 +1,90 @@
+"C makes it easy to shoot yourself in the foot; C++ makes it harder, but when you do it blows your whole leg off". - Bjarne Stroustrup
+
+1. Memory Leaks
+2. Buffer Overruns
+3. Uninitialized Memory
+4. Incorrect Pairing of Allocation and Deallocation
+5. Invalid Memory Access
+6. Debugging
+
+=======================================================================
+
+1. Memory Leaks
+
+Memory leaks occur when memory is allocated on the heap at run time but not deallocated.
+
+Depending the nature of the program, this may or may not be a big problem. For instance, if a program starts, computes something, then exits then it may not be a problem. But if a program runs for an extended period of time (or use a large data structure), then it will be a problem.
+
+A program with stop responding or crash if its memory requirements cannot be met.
+
+Note: In object oriented c++, the term Resoruce Acquisition Is Initialization (RAII) is a paradigm to protect against leaks.
+
+=======================================================================
+
+2. Buffer Overruns
+
+Buffer overruns occur when memory outside the allocated units is overwritten and thus corrupted. Problems caused by buffer overruns do not always immediately manifest, making them difficult to detect.
+
+  char str[5];
+  strcpy(str, "BufferOverrun");
+  printf("%s", str);
+
+side note: it is possible to inject malicious code into programs using buffer overuns.
+
+=======================================================================
+
+3. Uninitialized Memory
+
+Depending on the c++ compiler, data structures are sometimes initialzed (most often to 0) but sometimes they are not.
+
+  int a;
+  int b = a*42;
+  printf("%d", b);
+  // how is this related to the heap?
+
+Generally, variables are automatically initialzed in the following cases:
+  i. a class instance where the default constructor initializes all primitive types
+  ii. array initializer syntax is used, eg:
+    int a[10] = {}
+  iii. it is a global or extern value
+  iv. it is defined as static
+
+
+=======================================================================
+
+4. Incorrect pairing of allocation and deallocation
+
+  examples:
+
+    double *pDbl = new double[5];
+    delete pDbl; // this is the wrong delete -> should be -> delete[]
+
+    char *pChr = new char[5]
+    delete[] pChr;
+    delete[] pChr; // second deletion will cause crash
+
+    double *pDbl = new double;
+    free(double);
+
+
+=======================================================================
+
+5. Invalid Memory Access
+
+This error occurs when trying to access a block of heap memory that:
+  i. has not been allocated
+  ii. has already been deallocated
+
+    char *pStr = new char[25];
+    delete[] pStr;
+    strcpy(pStr, "Invalid Access");
+
+=======================================================================
+
+6. Debugging
+
+it should be noted that the consequences of improper memory management appear to vary system-by-system. and that future c++ standards may affect how memory is properly managed.
+
+on linux and mac, you can use valgrind
+
+on windows, you can use C Run-time Library (CRT)

@@ -1,0 +1,71 @@
+
+
+1. Memory Hierarchy
+2. How are the different types of memory used?
+3. A Word About CPUs and Bit Size (16 vs 32 vs 64)
+4. Why does the memory hierarchy exist?
+
+===========================================================================
+
+1. Memory Hierarchy
+
+01-pics-02-types-of-memory.png:
+"""
+As you can see, the CPU and its ultra-fast (but small) registers used for short-term data storage reside at the top of the pyramid. Below are Cache and RAM, which belong to the category of temporary memory which quickly looses its content once power is cut off. Finally, there are permanent storage devices such as the ROM, hard drives as well as removable drives such as USB sticks. 
+
+"""
+
+Memory types ranked from lowest latency to highest latency:
+1. CPU (Registers)
+2. Cache
+3. RAM
+4. Permanent Storage Areas ( ROM, hard drives, removable drives, etc )
+
+===========================================================================
+
+2. How are the different types of memory used?
+
+Computer turned on -
+i. computer loads data from read-only memory ( ROM chip on the motherboard) 
+ii. computer performs a power-on-self-test ( POST ) computer memory controller checks all of the memory addresses with a simple read/write operation
+
+# what is the data from the ROM?
+# what addresses does POST check?
+
+Computer loads its basic input/output system ( BIOS ) from ROM -
+i. the major task of the BIOS is to make the computer functional by providing basic info about things such as storage devices, boot sequence, etc
+
+Computer loads the OS - 
+i. the process of activating a more complex system on a simple system is called "bootstrapping"
+ii. during bootstrapping, the computer loads the OS from the hard drive into the random access memory ( RAM ). 
+- RAM is considered "random access" because any memory cell can be accessed directly by intersecting their respective rows and columns in the matrix-like memory layout.
+
+Computer loads an application - 
+i. when an app is started, it is loaded into RAM. However, several app components are only loaded into RAM on demand (to preserve memory). 
+ii. after closing an app, it is deleted from RAM
+
+
+# But what do the other memory types do? ( registers, cache)
+
+===========================================================================
+
+3. A Word About CPUs and Bit Size (16 vs 32 vs 64)
+
+The bit size of the CPU decides how many bytes of data it can access in RAM at the same time. A 16-bit CPU can access 2 bytes (2 * 8 bits), while a 64-bit CPU can access 8 bytes at a time.
+
+The processing speed of the CPU is measured in Gigahertz or Megahertz. This denotes the number of operations it can perform in one second (one hertz is one operation per second).
+
+processing speed * bit size = data process rate
+2.2GHz * 64-bit
+
+===========================================================================
+
+4. Why does the memory hierarchy exist?
+
+# The memory hierarchy exists because of:
+1. the progression of CPU speeds
+2. the high prices of fast memory in the market
+
+"limiting factor"
+
+small amounts of fast memory are combined with large amounts of slow memory to meet the needs of the CPU at a reasonable cost

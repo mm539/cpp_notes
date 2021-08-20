@@ -1,0 +1,36 @@
+
+
+1. Access Specifiers
+2. Inheritance and access specifiers/modifers
+
+=======================================================================
+
+1. Access Specifiers
+
+Access specifiers define which class members users can access.
+Access specifiers also define which class members users of a DERIVED CLASS can access.
+
+public - members are accessible from outside the class
+private - members are not accessible from outside the class
+protected - members cannot be accessed from outside the class; however, they can be access within inherited classes
+
+=======================================================================
+
+2. Inheritance and access specifiers/modifers
+
+There is an interplay between the access status of members of a class and the type of inheritance specified by a derived class.
+
+1. Public inheritance:
+public -> public
+protected -> protected
+private -> unaccessible (unless friended)
+
+2. Protected inheritance:
+public -> protected
+protected -> protected
+private -> unaccessible (unless friended)
+
+3. Private inheritance:
+public -> private
+protected -> private
+private -> unaccessible (unless friended)

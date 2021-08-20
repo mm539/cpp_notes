@@ -1,0 +1,17 @@
+***************************
+Initializer Lists
+***************************
+
+  Initializer lists allow us to initialize the values of member variables even before the object is created.
+
+  Typically, we can use an initializer list for values that do not have a setter function (and an invariant).
+
+  Initializer lists exist for at least 3 reasons.
+    1. optimization
+      compiler can optimize initialization faster from an initialization list than from within the constructor.
+
+    2. const
+      if you have a const class attribute, you can only initialize it using an initialization list. (otherwise, the const keyword would be violated by initializing the variable within the constructor)
+
+    3. references
+      attributes defined as references MUST use initialization lists

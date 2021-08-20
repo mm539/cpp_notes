@@ -1,0 +1,16 @@
+
+
+geez. learning about these details seems pretty useless.
+the standards are updating and optimizing how the code is compiled so that the programmer doesn't have to worry about these intricacies.
+
+the main takeaway from this should be the rule of 5 and how to implement it. knowing "how and why" is not so important.
+
+prof says this section is super important
+  passing ownership (scopes)
+  move semantics
+
+I need to answer the follow questions:
+  what happens when calling move on a:
+    i. stack object
+    ii. heap object via its handle
+    iii. smart pointer

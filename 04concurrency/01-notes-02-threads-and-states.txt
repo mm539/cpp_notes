@@ -1,0 +1,57 @@
+THREADS
+
+1. States of threads
+2. Starting a thread
+3. Code Overview
+4. Detaching
+
+=========================================================================
+
+1. States of threads
+
+  NEW:
+  A thread is in the "NEW" state once it has been created. It will not take any CPU resources at this time.
+
+  RUNNABLE:
+  - In this state, a thread might be running OR it might be ready to run. 
+  - It is the responsibility of the thread scheduler to assign CPU time to the thread.
+
+  BLOCKED:
+  - A thread might be in this state when it is waiting for I/O operations to complete.
+  - It will not consume any CPU time in this state.
+  - The thread scheduler is responsible for reactivating the thread. 
+
+=========================================================================
+
+2. Starting a thread
+
+  A thread can be started:
+    a. with a callable object such as:
+      i. a Lambda function
+      ii. a pointer to a function
+      iii. objects of a class with an overloaded function copy operator
+    b. variadic template
+    c. member functions??? is this a way?
+
+
+=========================================================================
+
+3. Code Overview
+
+  use the <thread> header file
+  compile with the -pthread option
+
+  thread.join
+  thread.detach
+
+=========================================================================
+
+4. Detaching
+
+  Imagine a main thread. Imagine in the main thread another thread is created. Both threads are given work to do.
+
+  If the sub-thread isn't joined before its destructor is called (when main returns), then running the program will ALWAYS result in a crash, regardless of which thread actually finished first. This behavior is coded in by design. It was done so that debugging a multi-threaded program can be easier.
+
+  The join requirment can be disabled by calling detach on a thread (this will set a threads internal state variable "joinable" to false).
+
+  A detached thread can no longer be joined.

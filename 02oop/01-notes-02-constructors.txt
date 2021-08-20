@@ -1,0 +1,38 @@
+
+Constructors
+
+1. What is a constructor?
+2. What is instantiation?
+3. What is relationship between constructors and instantiation?
+
+====================================================
+
+1. What is a constructor?
+
+  i. A constructor is a function which constructs objects of a class.
+
+  ii. All classes come with a default constructor which doesn't accept any arguments. The compiler defines it.
+
+  iii. We can also define our own constructors so that there can be multiple ways to instantiate an object of a class.
+
+  iv. It's a general rule not to have any complex logic in a constructor because it's hard to handle errors that take place in a constructor.
+
+  v. constructors typically establish invariants (but through helper functions?)
+
+====================================================
+
+2. What is instantiation?
+
+  a. Instantiation is the creation of a new instance of a class.
+
+  b. When a class is instantiated, memory is allocated for the object and the class's construction is called.
+
+  c. there are two ways to instantiate a class:
+    i. on the stack as a variable declaration
+    ii. on the heap with the new keyword
+
+====================================================
+
+3. What is relationship between constructors and instantiation?
+
+  Constructors tell the compiler how to instantiate the instance.

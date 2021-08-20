@@ -1,0 +1,12 @@
+lesson 2 is about passing data between threads after they have been created
+
+1. Promises & Futures
+  - private communication channel that can be used  ONCE at any time after thread creation
+  - can pass data and exceptions
+
+2. differences between threads and tasks
+  tasks are high level, it's easier/less writing to pass data through them
+
+3. passing data to thread by value (copies, move semantics)
+
+4. data races

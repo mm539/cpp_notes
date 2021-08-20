@@ -1,0 +1,41 @@
+1. What is a variadic template?
+2. What is the difference between calling a function directly and passing it to a thread?
+3. std::ref
+4. Member functions
+
+
+=========================================================================
+
+1. What is a variadic template?
+
+  A variadic template is a template that accepts a variable amount of arguments. It was introduced with c++11.
+
+  The thread constructor is a variadic template that allows us to pass it a function and its arugments, for example:
+    function0(string s, int x){}
+    thread t0(function0, "a", 2);
+
+
+=========================================================================
+
+2. What is the difference between calling a function directly and passing it to a thread?
+
+  When calling a function directly, arguments may be:
+  - passed by value
+  - passed by reference
+  - passed with move semantics
+
+  When calling a function with a variadic template, the arguments are default moved or copied, depending on whether they are rvalues or lvalues (rvalues are moved, lvalues copies). There are ways to overwrite this behavior though. If you want to move an lvalue, you can call std::move. 
+  
+=========================================================================
+
+3. std::ref
+
+  When using a pointer-to-function to instatiate a thread, any arguments that are designated as references in the function signature MUST be wrapped with std::ref in the thread instatiation.
+
+=========================================================================
+
+4. Member functions
+
+thread t0(&ClassName::MemberFn, obj, args...)
+
+=========================================================================

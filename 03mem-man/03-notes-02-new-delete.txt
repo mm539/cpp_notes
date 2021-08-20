@@ -1,0 +1,114 @@
+
+
+
+1. new and delete
+2. Differences between new/delete and malloc/free
+3. new/delete consequences
+4. Optimizing performance with placement new
+5. Performance: placement new VS new
+6. Overloaded new/delete
+7. Arrays with new/delete
+8. Reasons for overloading new and delete
+9. Typical Memory Management Problems
+10. Bjarne says
+
+======================================================================
+
+1. new and delete
+
+With the introductin of oop in c++, memory allocation and deallocation became more complex. When an object is created, its constructor needs to be called to allow for member initialization. On object deletion, the destructor is called to free resources and to allow for programmer-defined clean-up tasks.
+
+new/delete represent the object-oriented counterpart to memory management with malloc/free. new/delete call the constructor/destructor. malloc/free DO NOT.
+
+======================================================================
+
+2. Differences between new/delete and malloc/free
+
+  i. constructors/destructors - new calls the constructor. delete calls the destrutor
+
+  ii. type safety
+    - malloc returns a void pointer, which can be freely casted without warnings or errors from the compiler; this is NOT type safe.
+    - new returns the correct type automatically; it is type safe.
+
+  iii. operator overloading
+    - as malloc and free are functions defined in a library, their behavior cannot easily be changed.
+    - new and delete are operators; they can be overloaded
+
+======================================================================
+
+3. new/delete consequences
+
+  Calling new has the following consequences:
+    i. memory is allocated to hold a new object of type T
+    ii. a new object of type T is constructed within the allocated memory by calling the constructor of T
+  
+  Calling delete has the following consequences:
+    i. the object of type T is destroyed by calling its destructor
+    ii. the memory which the object was placed in is deallocated
+
+======================================================================
+
+4. optimizing performance with placement new
+
+  In some cases, it makes sense to separate memory allocation from object construction:
+    - consider a case where we need to reconstruct an object several times; using new/delete would be unnecessary as only the content of the memory block changes but not its size
+
+    the construct "placement new" allows us to do this.
+
+      void *memory = malloc(sizeof(MyClass));
+      MyClass *object = new(memory) MyClass;
+
+    however, there is no delete equivalent, so we must call the destructor explicitly:
+
+      object->~MyClass();
+      free(memory);
+
+    WTF!
+      I thought cast-typing was de-facto required for malloc, because otherwise there would be problems with memory management.
+      Maybe new takes care of the memory allocation?
+
+======================================================================
+
+5. Performance: placement new VS new
+
+======================================================================
+
+6. Overloaded new/delete
+
+  One of the major advantages of new/delete over free/malloc is the possibility of overloading. While both malloc and free are function calls and thus can not be changed easily, new and delete are operators and can thus be overloaded to integrate customized functionality, if needed. 
+
+  void* operator new(size_t size);
+  void operator delete(void* p)
+
+
+======================================================================
+
+7. Arrays with new/delete
+
+  void* operator new[](size_t size);
+  void operator delete[](void*);
+
+======================================================================
+
+8. Reasons for overloading new and delete
+
+    i. The overloaded new operator function allows to add additional parameters. Therefore, a class can have multiple overloaded new operator functions. This gives the programmer more flexibility in customizing the memory allocation for objects.
+
+    ii. Overloaded the new and delete operators provides an easy way to integrate a mechanism similar to garbage collection capabilities (such as in Java), as we will shorty see later in this course.
+
+    iii. By adding exception handling capabilities into new and delete, the code can be made more robust.
+
+    iv. It is very easy to add customized behavior, such as overwriting deallocated memory with zeros in order to increase the security of critical application data.
+
+======================================================================
+
+9. Typical Memory Management Problems
+
+see separate document... 
+
+======================================================================
+
+10. Bjarne says
+
+  new and delete don't belong in application code
+  new and delete belong in the implementation of your abstractions (eg in the vector class, in the string class, etc)

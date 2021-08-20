@@ -1,0 +1,17 @@
+
+Deadlock scenarios
+
+==========================================================================
+
+what is a deadlock?
+  when a lock fails to unlock
+
+what are the different deadlock scenarios?
+
+scenario #1
+  error throwing: going out of scope before the thread can unlock the locked mutex
+
+Scenario #2
+  In most cases, your code should only hold one lock on a mutex at a time. Occasionally you can nest your locks, for example by calling a subsystem that protects its internal data with a mutex while holding a lock on another mutex, but it is generally better to avoid locks on multiple mutexes at the same time, if possible. 
+  
+  Sometimes, however, it is necessary to hold a lock on more than one mutex because you need to perform an operation on two different data elements, each protected by its own mutex.

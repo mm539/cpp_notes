@@ -1,0 +1,68 @@
+1. vectors
+2. vectors 1D
+3. vectors 2D
+4. DANGER
+
+
+=========================================================
+
+### 1. What is a vector?
+A vector is a data structure.
+In c++, a vector is a linear sequence of contiguously allocated memory.
+c++ vectors are not ordered (non-indexed)
+c++ vectors are implemented with templates 
+
+How do vectors compare to:
+  - hash tables
+  - linked lists
+  - arrays
+    - arrays use contiguous storage locations (just like vectors)
+    - arrays are indexed
+    - arrays are static (length is constant) while vectors are dynamic (they can shrink/grow)
+
+=========================================================
+
+### 2. Vectors 1D
+What type of data type is a vector?
+
+#include <iostream>
+#include <vector>
+using std::cout;
+using std::vector;
+
+int main() {
+    // three ways of declaring and initializing vectors
+    vector<int> v_1{1, 2, 3}; // is it necessary to specify the type in the vector?
+    vector<int> v_2 = {4, 5, 6};
+    vector<int> v_3;
+    v_3 = {7}
+    cout << "everything worked" << "\n";
+}
+
+*** But how do I print vectors?
+Unfortunately, there isn't a built-in way to print vectors in C++ using cout. You have to loop through them.
+see 0208-vectors.cpp
+
+=========================================================
+
+### 3. Vectors 2D
+
+#include <iostream>
+#include <vector>
+using std::vector;
+using std::cout;
+
+int main() {
+    // create a 2d vector
+    vector<vector<int>> v {{1, 2}, {2, 3}};
+    cout << "great scott!" << "\n";
+}
+
+=========================================================
+
+4. DANGER
+
+Trying to access a position in a vector that hasn't been filled by the code can have unpredictable consequences. See:
+  00-a-star/a-star.cpp
+  0208-vectors.cpp
+=========================================================

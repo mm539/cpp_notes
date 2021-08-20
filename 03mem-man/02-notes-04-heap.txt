@@ -1,0 +1,66 @@
+
+
+1. Heap Memory
+2. Properties of heap memory
+3. Using heap memory
+4. Memory Fragmentation
+5. Bjarne Says
+
+================================================================
+
+1. Heap Memory
+
+  Heap memory, also know as dynamic memory , is an important resource available to programs (and programmers) to store data. The following diagram again shows the layout of virtual memory with the heap being right above the BSS and Data segment.
+
+  As mentioned earlier, the heap memory grows upwards while the stack grows in the opposite direction. We have seen in the last lesson that the automatic stack memory shrinks and grows with each function call and local variable. As soon as the scope of a variable is left, it is automatically deallocated and the stack pointer is shifted upwards accordingly. 
+
+================================================================
+
+2. Properties of heap memory
+
+  Let us take a look at some properties of heap memory:
+
+    1. As opposed to local variables on the stack, heap memory can be allocated in an arbitrary scope ( e.g. inside a function ) without it being deleted when the scope is left. 
+    --> So, as long as the address to an allocated block of memory is returned by a function, the caller can freely use it.
+
+    2. With heap memory, variables are allocated at run-time ( as opposed to being allocated at compile-time, such as with stack memory ). This means that the size of the variables can be tailored as required by user-input.
+
+    3. Memory leaks. If a programmer forgets to deallocate a block of heap memory, it will remain unused until the program is terminated. 
+
+    4. The heap is shared among multiple threads. This means that memory management for the heap needs to take concurrency into account. Several threads might compete for the same resource.
+
+    5. With heap memory, allocation and deallocation can occur arbitrarily, depending on the lifetime of the variables (? ). This can result in fragmented memory over time. This is more difficult and expensive to manage.
+    --> so, how is it managed?
+    . with stack  memory, the stack ponter is simply shifted upwards or downwards when memory is allocated or deallocated.
+
+================================================================
+
+3. Using heap memory
+
+  The programmer can request the allocation of memory by issuing a command such as malloc or new (more on that shortly). This block of memory will remain allocated until the programmer explicitly issues a command such as free or delete. The huge advantage of heap memory is the high degree of control a programmer can exert, albeit at the price of greater responsibility since memory on the heap must be actively managed. 
+
+
+================================================================
+
+4. Memory Fragmentation
+
+  Let us construct a theoretic example of how memory on the heap can become fragmented: Suppose we are interleaving the allocation of two data types X and Y in the following fashion: First, we allocate a block of memory for a variable of type X, then another block for Y and so on in a repeated manner until some upper bound is reached. At the end of this operation, the heap might look like the following: 
+
+  see 02-pics-03-memory-frag.png
+
+
+  At some point, we might then decide to deallocate all variables of type Y, leading to empty spaces in between the remaining variables of type X. In between two blocks of type "X", no memory for an additional "X" could now be squeezed in this example.
+
+  02-pics-03-memory-frag-p2.png
+  
+  A classic symptom of memory fragmentation is that you try to allocate a large block and you can’t, even though you appear to have enough memory free. On systems with virtual memory however, this is less of a problem, because large allocations only need to be contiguous in virtual address space, not in physical address space.
+
+  When memory is heavily fragmented however, memory allocations will likely take longer because the memory allocator has to do more work to find a suitable space for the new object.
+
+  Until now, our examples have been only theoretical. It is time to gain some practical experience in the next section using malloc and free as C-style methods for dynamic memory management.
+
+================================================================
+
+5. Bjarne Says
+
+  In modern c++, you can use constructors and destructors along with handles (pointers ) to abstract heap management away.

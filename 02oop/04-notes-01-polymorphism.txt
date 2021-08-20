@@ -1,0 +1,64 @@
+
+
+Polymorphism is the implementation of an interface that can work with several different types.
+
+In the context of object-oriented programming, polymorphism) describes a paradigm in which a function may behave differently depending on how it is called. In particular, the function will perform differently based on its inputs.
+
+Polymorphism can be achieved in two ways in C++: 
+1. overloading 
+2. overriding. 
+
+=============================================================
+
+1. Overloading
+
+  i. function overloading
+    Overloading requires that we leave the function the same name, but we modify the function signature. EG We might define the same function with multiple different configurations of input arguments.
+
+    Note: overloading can happen outside of an object-oriented context as well.
+
+
+  ii. Operator Overloading
+
+    Operators are essentially function names.
+    5 + 5
+    add( 5, 5 )
+
+    For user-defined classes, sometimes we may want to define how the operators work with them. This is called operator overloading.
+
+    To overload an operator we define a function using the operator keyword.
+
+    returnType operator() (param1, ... );
+
+    Then, we can do operators such as the following:
+
+    Point p1;
+    Point p2;
+    Point p3 = p2 + p1;
+
+====================================================================
+
+2. Overriding
+
+
+Overriding a function occus when:
+  i. a base class declares a virtual function
+  ii. the derived class overrides the virtual function by defining its own implementation with an identical function signature ( same name and arguments)
+
+  Is is possible, but not required, to specify a function as override.
+
+  class Shape {
+  public:
+    virtual double Area() const = 0;
+    virtual double Perimeter() const = 0;
+  };
+
+  class Circle : public Shape {
+  public:
+    Circle(double radius) : radius_(radius) {}
+    double Area() const override { return pow(radius_, 2) * PI; } // specified as an override function
+    double Perimeter() const override { return 2 * radius_ * PI; } // specified as an override function
+
+  private:
+    double radius_;
+  };

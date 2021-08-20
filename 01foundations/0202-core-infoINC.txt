@@ -1,0 +1,155 @@
+In this document, I tried to explain some topics related to things I've seen in professional c++ code that I've never understood. I've always gotten the impression that understanding these concepts was essential to writing profressional c++.
+
+======================================================
+
+1. phases of translation
+2. preprocessor, compiler, linker
+3. preprocessor directives
+4. namespaces
+5. keywords
+6. macros
+7. Compiling and Exectuing
+
+======================================================
+
+1. phases of translation
+
+What is translation?
+translation is the procress of converting a sequence of text files into machine-readable code. 
+
+According to the source below, there are 9 phases of translation.
+https://en.cppreference.com/w/cpp/language/translation_phases
+
+However, we can also think of it like this:
+  see IMG_c-translation-phases.svg
+
+As you can see, the main phases are:
+  i. preprocessor execution
+  ii. compiler execution
+  iii. linker execution
+
+======================================================
+
+2. preprocessor, compiler, linker
+
+The result of preprocessing is a single file (a combo of .cpp files and .h files). 
+
+This file is then passed to the compiler, which converts it to a .o file.
+
+Finally, the linker combines all .o files into a single .exe file.
+
+======================================================
+
+3. preprocessor directives
+
+Below are some preprocessor directives.
+
+#include
+#define
+#ifdef
+#pragma
+
+  i. We use #include to include other files. 
+  Example:
+    #include <iostream> // this line searches for iostream header file and pastes its contents into the program
+
+  ii. We use #define to define macros.
+    there are object-like macros.
+    there are function-like macros.
+    see https://en.cppreference.com/w/cpp/preprocessor/replace
+
+  iii. We use #pragma to control implementation specific behavior, such as disabling compiler warnings or changing alignment requirements. Any pragma that is not recognized is ignored. 
+
+  iv. #pragma once is an alternative to "include guards"
+
+======================================================
+
+4. namespaces
+
+======================================================
+
+5. keywords
+
+Keywords are wards that are reserved for use by the language. They are not available for overloading or re-definition.
+
+https://en.cppreference.com/w/cpp/keyword
+
+
+  i. auto is a keyword that automatically assigns types.
+
+  #include <iostream>
+  #include <vector>
+  using std::cout;
+  using std::vector;
+
+  int main() {
+      auto i = 5;
+      auto v_6 = {1, 2, 3}; 
+      // vector<int> v_6 = {1, 2, 3};
+      cout << "variables declared and initialized without explicitly stating type";
+  }
+
+======================================================
+
+6. Macros
+
+  A macro is a fragment of code which has been given a name. The preprocessor directive #define can be used to define macros. Whenever a macro's name is used, it is replaced by the contents of the macro. There are:
+    i. object-like macros
+      - An object-like macro is a simple identifier which will be replaced by a code fragment. It is called object-like because it looks like a data object in code that uses it. They are most commonly used to give symbolic names to numeric constants.
+
+    ii. function-like macros
+
+  Inline functions are usually preferable to macros because inline functions have type-checking.
+
+  Side-Note #1:
+    My impression is that macros are most appropriate for hardware-level, platform-specific, and system-specific related code.
+
+  Side-Note #2:
+    The process of defining a function-like macro can feel counter-intuitive. Take extra care to research the rules of defining a macro.
+
+======================================================
+
+7. Compiling and Exectuing
+
+> g++ main.cpp
+> ./a.out
+
+OR
+> g++ main.cpp && ./a.out (linux)
+> g++ main.cpp; .\a.exe (windows)
+
+
+You should always specify the c++ standard that the compiler should compile the code according to. Example:
+  g++ main.cpp -std=c++17
+
+To find out what standard a program was compiled with, you can add this to main.cpp:
+  cout << __cplusplus << std::endl;
+
+FROM STACK OVERFLOW:
+  C++ pre-C++98: __cplusplus is 1.
+  C++98: __cplusplus is 199711L.
+  C++98 + TR1: This reads as C++98 and there is no way to check that I know of.
+  C++11: __cplusplus is 201103L.
+  C++14: __cplusplus is 201402L.
+  C++17: __cplusplus is 201703L.
+
+
+
+======================================================
+
+B: using std::cout
+1. specify to always use the standard library's cout
+2. std is the standard library's namespace
+3. using std::cout reserves the cout namespace for the standard library's cout
+4. c++ coding statements end with a semicolon; preprocessor commands such as #include
+don't require one.
+
+======================================================
+
+C: cout << "hello" << "\n";
+1. the << operator is called the "shovel operator" or the stream insertion operator
+2. it writes what's on the right side to the left side
+
+======================================================
+
+

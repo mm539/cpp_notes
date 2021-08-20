@@ -1,0 +1,7 @@
+
+
+1. What is the monitor object pattern?
+
+  It is a design pattern used to synchronize concurrent method execution to ensure that only one method at a time runs in an object.
+
+  It is useful when an app contains objects whose methods are invoked concurrently by multiple threads

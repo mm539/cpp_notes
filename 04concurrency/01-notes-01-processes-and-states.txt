@@ -1,0 +1,39 @@
+PROCESS STATES
+
+* The Scheduler 
+Processes are managed by the scheduler of the OS. The scheduler can either:
+  i. let a process run until it ends or blocks, OR 
+  ii. can ensure that the currently running process is interrupted after a short period of time. (typical scheduling strat of modern OSes)
+
+The scheduler can switch back and forth between different active processes.
+
+--------------------------------------------------------------------------
+
+READY: 
+- After its creation, a process enters the ready state and is loaded into main memory. 
+- The process is ready to run and is waiting for CPU time to be executed. 
+- Processes that are ready for execution are stored in a queue managed by the OS.
+
+RUNNING:
+The OS has the selected the process for execution and instructions within the process are executed.
+
+BLOCKED:
+A blocked process is one that is waiting for an event such as:
+i. a system resource becoming available
+ii. completion of an I/O operation
+
+TERMINATED:
+- When a process completes its execution OR when it is being explicity killed, it changes to the terminated state.
+- In the terminated state, the process remains in the process table as a "zombie process." When it is finally removed from the process table, its lifetime ends.
+
+READY SUSPENDED:
+- A process that was initially in the ready state but has been swapped out of the main memory and placed onto external storage.
+- The process will transition back to ready state whenever it is moved to main memory again.
+
+BLOCKED SUSPENDED:
+- A process that is blocked may also be suspended out of main memory.
+- It may be swapped back in again under the same conditions as "ready suspended." In such a case the process will moved to the blocked state. ???
+
+--------------------------------------------------------------------------
+
+Administration of processes is computationally taxing. OSes also support a more resource-friendly way of realizing concurrent operations: threads.

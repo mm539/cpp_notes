@@ -1,0 +1,47 @@
+GDB
+
+1. Getting things to work
+2. Break Points
+3. Printing
+
+=============================================================
+
+1. Getting things to work
+
+generate source level debug info with the g flag:
+g++ -g executable_name
+
+to use the GNU debugger:
+$ gdb executable_name
+
+to see the source code while in gdb,
+$ list
+
+add breakpoints and run (see step 2)
+
+=============================================================
+
+2. Break Points
+
+to add a breakpoint:
+$ break # <---- this line won't be read
+$ break 5
+
+to run the code up until a breakpoint:
+$ run
+then the code will execute up till that line
+
+to execute the next line of code:
+$ step
+
+=============================================================
+
+3. Printing
+
+to print a variable value: $ p variable_name
+location in memory: $ p &variable_name
+
+to see the variable in memory:
+$ x/nfu <address. see cheat sheet.
+x/7tb 0x7ffffffedfd0
+this will show use the values of our variable

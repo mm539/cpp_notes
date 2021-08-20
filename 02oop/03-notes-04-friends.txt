@@ -1,0 +1,6 @@
+The friend keyword grants access to the private members of a class to the class that is designated as a friend.
+
+The friend keyword allows us to restrict access to (private)* members from all except those classes designated as friend classes.
+
+
+* if a member is not private, then what is the use of using the friend keyword? none?

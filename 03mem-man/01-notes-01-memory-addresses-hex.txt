@@ -1,0 +1,70 @@
+
+
+1. What are bytes? What are bits?
+2. What is an ASCII table?
+3. Why use hex numbers?
+4. Using the GDB Debugger to look at memory
+
+===========================================================================
+
+1. What are bytes? What are bits?
+
+  A bit is the smallest unit of computer. It represents either off(0) or on (1).
+  0
+  1
+
+  1 byte = 8 bits
+  0000 0000
+
+  Number systems for bits & bytes:
+  i. binary
+  ii. hexadecimal
+  iii. decimal
+
+  binary    ||  hex   || dec
+  0000 0000     00        0
+  0000 0001     01        1
+  0000 1010     0A       10
+  0111 1111     7F       127
+
+===========================================================================
+
+2. What is an ASCII table?
+
+  ASCII (American Standard Code for Information Interchange) lists the binary code for a set of 128 characters. 
+
+  The reasons for using hex are as follows:
+  1. Readability - it's easier for a human to understand hex numbers
+  2. Information Density - A 2 digit hex number can express any number from 0-255. It would require 8 digits of binary to do the same.
+  3. Conversion into bytes - memory addresses use bytes ( collections of 8 bits ). The hex counting system easily converts into bytes ( a 2 digit hex number can express a byte memory location )
+
+  dec  ||   binary   ||  hex
+  0          0            0
+  15        1111          F
+  127     0111 1111       7F
+  255     1111 1111       FF
+
+===========================================================================
+
+3. Why use hex numbers? (as opposed to binary or decimal)
+
+  There are at least 3 reasons:
+    i. Readability
+      hex numbers are more intuitive for humans to read
+    ii. Information density
+      larger numbers can be stored with fewer digits
+    iii. Conversion into bytes
+      the vast majority of computers are byte-addressed (meaning memory addresses are stored in bytes)
+
+===========================================================================
+
+4. Using the GDB Debugger to look at memory
+
+see code
+see gdb cheat sheet
+see 01-notes-03-gdb.txt
+
+The debugger can be used to:
+  i. set break points
+  ii. inspect the env
+  iii. inspect variables

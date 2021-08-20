@@ -1,0 +1,33 @@
+
+What are mutexes?
+  Mutexes are objects that can be instatiated within a data structure OR scope. If the mutex is locked then only the thread that locked the mutex of the data structure || scope can access the data structure. Only when the mutex is unlocked can other threads access the data structure || scope. 
+
+  MUTEXES SHOULD NEVER BE USED DIRECTLY because the consequences of a deadlock outweigh any benefits from direct use. They should always be used with lock_guards, unique_locks, and std::lock + adopt_lock.
+
+
+There are 4 types of mutexes.
+
+  1. mutex
+    - lock and unlock
+    - try_lock
+      try_lock is a non-blocking function that returns true if it succeeds on locking
+
+  2. recursive_mutex
+    - allows multiple acquisitions of the mutex from the same thread
+
+  3. timed_mutex
+    - lock and unlock
+    - try_lock_for(rel time)
+      - try to acquire a mutex for a period of time
+    - try_lock_until(absolute time)
+
+    4. recursive_timed_mutex
+      - a combo of timed_mutex and recursive_mutex
+
+    there are two types of locks
+
+    std::unique_lock<std::mutex>
+    std::lock_guard<std::mutex>
+
+  there is a ?manager?
+  std::lock(mutex1, mutex2, ...)

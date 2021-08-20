@@ -1,0 +1,16 @@
+Multiple inheritance is when a class inherits from multiple classes.
+
+===============================================================
+
+1. When should you use mutliple inheritance?
+
+The Core Guidelines have some worthwhile recommendations about how and when to use multiple inheritance:
+
+    "Use multiple inheritance to represent multiple distinct interfaces"
+    "Use multiple inheritance to represent the union of implementation attributes"
+
+===============================================================
+
+2. The diamond problem
+
+If a class inhertis from two base classes, both of which themselves inherit from the same abstract class, a conflict can emerge.

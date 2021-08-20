@@ -1,0 +1,56 @@
+1. Stack Memory
+2. Key Properties of stack memory
+3. Call-by-reference vs call-by-value (vs pointers)
+4. my thoughts
+
+========================================================================
+
+1. Stack Memory
+
+In the available literature on C++, the terms stack and heap are used regularly, even though this is not formally correct: C++ has the free space, storage classes and the storage duration of objects. However, since stack and heap are widely used in the C++ community, we will also use it throughout this course. Should you come across the above-mentioned terms in a book or tutorial on the subject, you now know that they refer to the same concepts as stack and heap do.
+
+As mentioned in the last section, the stack is the place in virtual memory where the local variables reside, including arguments to functions. Each time a function is called, the stack grows (from top to bottom) and each time a function returns, the stack contracts. When using multiple threads (as in concurrent programming), it is important to know that each thread has its own stack memory - which can be considered thread-safe.
+
+========================================================================
+
+2. Key Properties of stack memory
+
+    i. The stack is a contiguous block of memory. It will not become fragmented (as opposed to the heap) and it has a fixed maximum size.
+
+    ii. When the maximum size of the stack memory is exceeded, a program will crash.
+
+    iii. Allocating and deallocating memory is fast on the stack. It only involves moving the stack pointer to a new position.
+
+    Because of these properties, usage of the stack should be the default.
+
+    However, in case you need to maintain large data structures such as images and video, you should use the heap (dynamic memory allocation).
+
+========================================================================
+
+3. Call-by-reference vs call-by-value (and pointers)
+
+  i. reference vs value
+    calling-by-reference allows you to operate directly on the data.
+    there is no duplication of memory as in call-by-value
+
+  ii. pointers
+    it is also possible to pass a pointer to a function, which will create a local pointer on the stack that will allow you to directly manipulate the memory to which it points
+
+    calling-by-pointer is actually a type of call-by-value
+
+========================================================================
+
+4. My thoughts
+
+  i. look at 02-pics-02-stack.png.
+
+  accompanying text:
+  In the example, the variable x is created on the stack within the scope of main. Then, a stack frame which represents the function Add and its variables is pushed to the stack, moving the stack pointer further downwards. It can be seen that this includes the local variables a and b, as well as the return address, a base pointer and finally the return value s.
+
+  ii. what is a "stack frame"?
+    whenever a function is called, a stack frame is created on the stack. a stack frame contains information about the local variables and the return address.
+
+  iii. lifetime of a variable
+    the time between allocation and deallocation
+
+  iv. look at the ipynb fire for this topic. there is some interesting stuff. for example, did you know that when a function exits, the local variables are deallocated (and therefore there is no way to know their values, even if we have pointers to their addresses)

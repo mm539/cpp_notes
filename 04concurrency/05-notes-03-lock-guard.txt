@@ -1,0 +1,27 @@
+what is a lock guard?
+
+  an extended locking concept assuring that a lock unlocks
+  package calls to the mutex in an object
+  this object locks the mutex when it is created, and unlocks the mutex when it is destroyed
+
+  reminds me of a smart pointer
+
+  imagine that while accessing a shared resource, an exception is thrown, calling focus away from the current thread; as soon as the lock guard object is invalidated by going out of scope, the mutex is unlocked.
+
+========================================================================
+
+what is a unique lock?
+  unique lock is like std::lock_guard but it gives finer control:
+    - locking and unlocking
+    - deferred locking
+    - time locking
+    - recursive locking
+    - transfer of lock ownership and the use of condition variables
+
+
+    The main advantages of using std::unique_lock<> over std::lock_guard are briefly summarized in the following. Using std::unique_lock allows you to:
+
+    1. construct an instance without an associated mutex using the default constructor
+    2.construct an instance with an associated mutex while leaving the mutex unlocked at first using the deferred-locking constructor
+    3. construct an instance that tries to lock a mutex, but leaves it unlocked if the lock failed using the try-lock constructor
+    4. construct an instance that tries to acquire a lock for either a specified time period or until a specified point in time

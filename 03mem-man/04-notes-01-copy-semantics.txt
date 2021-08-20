@@ -1,0 +1,83 @@
+
+0. Important note
+1. What is RAII?
+2. No-Copy Policy
+3. Exclusive Ownership Policy
+4. Deep Copying Policy
+5. Shared Ownership Policy
+6. Rule of 3
+
+======================================================================
+
+0. Important note
+
+  All of the examples for this section(04) use malloc/free instead of new/delete.
+  Using new/delete is preferred for the sake of uniformity: it works not only for the primitive types but also for user-defined types.
+
+======================================================================
+
+1. What is RAII?
+
+  Resource Acquisition is Initialization
+
+  RAII is the concept of acquiring resources by use of manager classess that wrap around handles(pointers) to those resources. The handles are initialized(in the constructor) upon acquisition and released(in the destructor) when the resource is deleted.
+
+  One problem with this approach is the default copying or default copy assigning of a manager object will shallow copy the handles. This allows two objects to access the same resource - this can create problems. (data races, invalid memory access, etc)
+
+  A solution to this problem is to adopt one of various copying policies and implement them in the manager classes. Each policy has its own use-case.
+
+======================================================================
+
+2. No-Copy Policy
+
+  A no copy policy:
+    - forbid all copying and assigning class instances
+    - this is the simplest policy
+    - can be achieved by:
+      a. defining a private copy constructor and copy assignment operator
+      b. defining the copy constructor/copy assignment operator with the delete operator
+
+======================================================================
+
+3. Exclusive ownership policy
+
+  In an exclusive ownership policy:
+    - whenever a resource management object is copied, the resource handle is transferred from the source pointer to the destination pointer
+
+          ExclusiveCopy(ExclusiveCopy &source)
+            {
+                _myInt = source._myInt;
+                source._myInt = nullptr;
+            }
+
+    - the source pointer should be set to nullptr
+    - the resource handle belongs only to a single object
+
+    - in concurrent programs, this approach would lead to a data race; there is a small amount of time during which two handles exist for the same resource (after the handle has been copied and before it has been set to nullptr)
+
+======================================================================
+
+4. Deep Copying Policy
+
+  With this policy, copying and assigning class instances to each other is possible without the danger of resource conflicts. The idea is to allocate proprietary memory in the destination object and then to copy the content to which the source object handle is pointing to to the newly allocated block of memory. This way, the content is preserved during copy or assignment. However, this approach increases the memory demands and the uniqueness of the data is lost: After the deep copy has been made, two versions of the same resource exist in memory.
+
+  The deep-copy version of MyClass looks similar to the exclusive ownership policy: Both the assignment operator and the copy constructor have been overloaded with the source object passed by reference. But instead of copying the source handle (and then deleting it), a proprietary block of memory is allocated on the heap and the content of the source is copied into it. 
+
+======================================================================
+
+5. Shared Ownership Policy
+
+The idea is to perform a copy or assignment similar to the default behavior, i.e. copying the handle instead of the content (as with a shallow copy) while at the same time keeping track of the number of instances that also point to the same resource. Each time an instance goes out of scope, the counter is decremented. Once the last object is about to be deleted, it can safely deallocate the memory resource. We will see later in this course that this is the central idea of unique_ptr, which is a representative of the group of smart pointers.
+
+======================================================================
+
+6. Rule of 3
+
+  In order to properly manage memory allocation, deallocation and copying behavior, we have seen that there is an intricate relationship between destructor, copy constructor and copy assignment operator. 
+  
+  To this end, the Rule of Three states that if a class needs to have an overloaded copy constructor, copy assignment operator, ~or~ destructor, then it must also implement the other two as well to ensure that memory is managed consistently. As we have seen, the copy constructor and copy assignment operator (which are often almost identical) control how the resource gets copied between objects while the destructor manages the resource deletion. 
+
+======================================================================
+
+
+======================================================================
