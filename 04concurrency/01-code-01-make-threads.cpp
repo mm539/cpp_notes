@@ -6,6 +6,11 @@
 using namespace std;
 
 /*
+  In this file, we see:
+    A. how to pass a function to a thread
+    B. how to add threads to a vector
+    C. the important of joining
+
   Note about compiling and executing:
     i. compile in WSL
       g++ -pthread program_name
@@ -34,8 +39,13 @@ void f2(int n){ // because the thread constructor is a variadic template, we can
 int main(){
   cout << "Number of cores available for concurrency: " << thread::hardware_concurrency() << endl;
 
-  // A. what can be supplied to the thread constructor as its fn argument to instantiate a thread?
-  // ANSWER: see 01-notes-03-callable-objects.txt
+  /* A. what can be supplied to the thread constructor as its fn argument to instantiate a thread?
+    1. lambda
+    2. fn
+    3. ... ?
+    
+    see 02-notes-01-callable-objects.txt for more details
+  */
 
   // 1. lambda function
   thread t1([](){

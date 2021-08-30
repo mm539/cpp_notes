@@ -3,6 +3,8 @@
 3. Parts of a lambda
 4. Starting threads with lambdas
 
+see ../00-misc/04-lambdas-01-basics.cpp for general lambda code.
+
 ===========================================================================
 
 1. What is a lambda expression?
@@ -68,4 +70,4 @@ Lambdas are often used as arugments for functions that can take a callable objec
 
 mutable -> lambda-declarator that removes const qualification from parameters captured by copy (since C++11) 
 
-my observation is that FOR capture lists it allows the lambda to create a copy of the variable that can be modified
+my observation is that for capture lists it allows the lambda to create a copy of the variable that can be modified

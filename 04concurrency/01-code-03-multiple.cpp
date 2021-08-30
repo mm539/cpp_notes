@@ -35,7 +35,7 @@ int main()
       threads.push_back(t);
 
       // a solution is to use move semantics here
-      // another solution is to use emplace_back
+      // another solution is to use emplace_back (which implicitly calls the move constructor)
     */
 
     threads.emplace_back(thread(printHello)); // emplace_back uses move semantics internally
@@ -57,7 +57,7 @@ int main()
 
   *** Properties of concurrent programs:
   1. order of execution of threads is non-deterministic
-  2. threads may get preempted in the middle of execution and another thread may be selected to run.
+  2. threads may get preempted in the middle of execution and another thread may be selected to run. (this can happen when the hardware concurrency limit is reached and the OS attempts to simulate asynchroncity)
 
   These two properties pose a major problem with concurrent applications.
 
@@ -66,10 +66,13 @@ int main()
 
   // clearing a vector:
   //threads.clear(); // <-- per cplusplus.com, memory reallocation and vector resizing is not guaranteed to happen with this
-  vector<thread>().swap(threads); // clear x, reallocating
+  vector<thread>().swap(threads); // clear x, reallocate memory
 
 
-  // PART 2: GOODBYE (Solution: add time delay)
+  // PART 2: GOODBYE (Solution: add time delay to fn)
+  // note: although the time delay gives us the desired output, it is not a good solution to the problem of multiple threads accessing the same resource (in this case, cout)
+  // what if each thread had spent more time sending to cout than the added time delay?
+  // the solution, as will be seen later, is a message queue (that utilizes a monitor object pattern)
   
   for (int i = 0; i < 10; i++){
     threads.emplace_back(thread(printGoodbye, i) );
