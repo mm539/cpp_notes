@@ -2,7 +2,6 @@
 #include <thread>
 using namespace std;
 
-// INCOMPLETE: need to examine capturing and parameter lists
 
 int main()
 {
@@ -11,13 +10,15 @@ int main()
 
   auto f0 = [&id](){
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    std::cout << "A) ID in t1 (pass-by-reference) = " << id << std::endl;
+    std::cout << "A) ID in t1 (capture-by-reference) = " << id << std::endl;
   };
   std::thread t1(f0); // start the first thread
 
+  // this thread uses an anonymous inline function
   std::thread t2([id]() { // mutable {
+    std::cout << "B) ID in t2 (capture-by-value) = " << id << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(700));
-    std::cout << "B) ID in t2 (pass-by-value) = " << id << std::endl;
+    std::cout << "B) ID in t2 (capture-by-value) = " << id << std::endl;
   }); // start the second thread
 
   id++;
@@ -29,7 +30,7 @@ int main()
   t2.join();
 
   /* OBSERVE
-  The pass-by-value thread is executed with the compile time value of id.
+  The capture-by-value thread is executed with the compile-time-value of id.
 
   paraphrase->"When data to which the reference refers changes before the thread is executed, those changes will be visible to the thread.
 
@@ -41,19 +42,21 @@ int main()
   */
 
   cout << "\n\nParameter lists:\n";
+  // auto f1 = [](int x){ x++};
   auto f1 = [](int x){};
-  // auto f2 = [](int& x) {};
-  // auto f3 = [](int x, int& y) mutable {};
+  auto f2 = [](int& x) { x++; };
+  auto f3 = [](int x) mutable { x++; };
 
   int x = 0;
 
   thread t01(f1, x);
   //thread t02(f2, x); // <--- didn't work
-  //thread t03(f3, x, x);
+  thread t02(f2, ref(x)); 
+  thread t03(f3, x);
 
   t01.join();
-  // t02.join(); 
-  //t03.join();
+  t02.join(); 
+  t03.join();
 
   cout << "x: " << x << endl;
   return 0;

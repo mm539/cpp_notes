@@ -11,6 +11,6 @@ Starting a thread with a function object
   In c++, a callable object is an object that can appear as the left-hand operand of the call operator. These can be:
     i. pointers to functions
     ii. objects of a class that define an overloaded function call operator
-    iii. lambdas (anonymous inline functions)
+    iii. lambdas
 
 

@@ -2,7 +2,18 @@
 #include <thread>
 #include <string>
 
-// the thread constructor is a variadic template
+/*
+  This document DOES NOT cover variadic templates. Rather, it shows how variadic templates are used in thread creation.
+
+  To see an explanation of variadic templates, go to:
+    ../00-misc/03-variadics-02-templates.cpp
+    ../00-misc/03-variadics-03-templates.cpp
+
+  Things to keep in mind:
+    1. thread constructors use variadic templates
+    2. when passing a function to a thread, function parameters that take references REQUIRE that arguments be wrapped by std::ref when passed to the thread constructor
+
+*/
 
 void printName(std::string name, int waitTime)
 {
@@ -24,9 +35,9 @@ int main(){
   std::string name2 = "MyThread2";
   std::string name3 = "MyThread3";
 
-  std::thread t1(printName, name1, 50);
-  std::thread t2(printName, std::move(name2), 100);
-  std::thread t3(printName, std::ref(name3), 50);
+  std::thread t1(printName, name1, 100);
+  std::thread t2(printName, std::move(name2), 300);
+  std::thread t3(printName, std::ref(name3), 500);
 
   t1.join();
   t2.join();

@@ -10,7 +10,7 @@
 
   A variadic template is a template that accepts a variable amount of arguments. It was introduced with c++11.
 
-  The thread constructor is a variadic template that allows us to pass it a function and its arugments, for example:
+  Thread constructors use variadic templates. This allows the constructor to accept a function and its arugments, for example:
     function0(string s, int x){}
     thread t0(function0, "a", 2);
 
@@ -24,13 +24,16 @@
   - passed by reference
   - passed with move semantics
 
-  When calling a function with a variadic template, the arguments are default moved or copied, depending on whether they are rvalues or lvalues (rvalues are moved, lvalues copies). There are ways to overwrite this behavior though. If you want to move an lvalue, you can call std::move. 
+  When calling a function with a variadic template, the arguments are default moved or copied, depending on whether they are rvalues or lvalues (rvalues are moved, lvalues copied). There are ways to overwrite this behavior though. If you want to move an lvalue, you can call std::move. 
   
 =========================================================================
 
 3. std::ref
 
   When using a pointer-to-function to instatiate a thread, any arguments that are designated as references in the function signature MUST be wrapped with std::ref in the thread instatiation.
+
+  see 02-code-02-lambda.cpp lines 51, 52
+  see 02-code-03-var-template.cpp
 
 =========================================================================
 

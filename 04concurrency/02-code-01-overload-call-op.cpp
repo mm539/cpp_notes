@@ -10,21 +10,23 @@ using namespace std;
     1. how to pass data to a thread with a class that has an overloaded function call operator
     2. "the most vexing parse"
 
+  But what is the purpose of function call operator overloading?
+    1. if a class doesn't have an overloaded function call operator, it is not a callable object and CANNOT be passed to a thread
+        i. note: if an object with an overloaded function call operator is instantiated prior to the creation of a thread, it can still be passed to the thread, however, the overloaded behavior won't occur.
+        ii. I don't see any purpose for point i, but it's interesting
+    2. will the function call operator be called even if an object is not created within a thread? -> No.
+    3. also, see 02-notes-01-callable-objects.cpp
 */
 
 class Vehicle{
   private:
     int _id = 0;
   public:
-    Vehicle(){}
-    Vehicle(int id): _id(id){}
+    Vehicle(){ cout << "default constructor called\n";}
+    Vehicle(int id): _id(id){ cout << "single param constructor called\n";}
     void operator()() //<---- this class has an overloaded function call() operator
     {
-      if (_id != 0){
-        printf("Vehicle object with id %i created!\n", _id);
-        return; 
-      }
-      std::cout << "Vehicle object has been created\n";
+      cout << "function call operator called\n";
     }
 };
 
@@ -41,8 +43,7 @@ int main()
   std::thread t0(Vehicle());
 
   compiler interprets this as:
-  
-  a function declaration for a funcion t0 that returns an object of type std::thread and has a single unnamed parameter that is a pointer to a function returning an object of type Vehicle. 
+    a function declaration for a funcion t0 that returns an object of type std::thread and has a single UNNAMED parameter that is a pointer to a function returning an object of type Vehicle. 
 
   HOWEVER, we want to be interpreted as a variable definition for variable t of class std::thread, that is initialized with an anonymous instance of class Vehicle
 
