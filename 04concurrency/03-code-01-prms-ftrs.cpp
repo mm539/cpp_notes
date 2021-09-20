@@ -60,6 +60,7 @@ int main(){
   future<string> ftr1 = prms1.get_future();
 
   thread t1([msg, &prms1](){
+    this_thread::sleep_for(chrono::milliseconds(1500));
     prms1.set_value(msg + " lambda!");
   });
   t1.detach();

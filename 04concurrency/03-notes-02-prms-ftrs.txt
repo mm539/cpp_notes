@@ -27,6 +27,8 @@ Promises and Futures
 
   In some situations it might be useful to separate the waiting for the content from the actual retrieving. We can use future::wait to do this.
 
+  When would it be useful? I have no idea. 
+
 ===========================================================================
 
 3. future::wait_for
@@ -45,6 +47,8 @@ Promises and Futures
     future_status::ready    -> 0
     future_status::timeout  -> 1
     future_status::deferred -> 2
+
+  deferred is for deferred functions... I couldn't find much about deferred functions except for how they relate to std::async (see next section)
 
 ===========================================================================
 
@@ -76,4 +80,4 @@ Promises and Futures
 
 6. exceptions
 
-see .cpp file
+see 03-code-03-ftr-excep.cpp

@@ -37,12 +37,13 @@ int main(){
   cout << "\n";
   auto fn = [](int delay){
     this_thread::sleep_for(chrono::milliseconds(delay));
-    cout << "thread id: " << this_thread::get_id() << endl;
+    cout << "thread id: " << this_thread::get_id() << " with delay " << delay << endl;
     return delay + 1.1;
   };
 
   future<double> ftr1 = async(launch::async, fn, 4000);
-  future<double> ftr2 = async(launch::deferred, fn, 30);
+  //future<double> ftr2 = async(launch::async, fn, 30);
+  future<double> ftr2 = async(launch::deferred, fn, 30); // what is the thread id
   cout << ftr1.get() << endl;
   cout << ftr2.get() << endl;
   

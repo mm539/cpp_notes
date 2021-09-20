@@ -7,13 +7,10 @@ using namespace std;
 void divide(promise<double> &&prms, double num, double denom){
   try
   {
-    if(denom == 0){
-      throw runtime_error("The denominator may not be 0.");
-    } else{
-      prms.set_value(num/denom);
-    }
+    if (denom == 0) throw runtime_error("Cannot divide by Zero!"); 
+    prms.set_value(num/denom);
   }
-  catch(...) // <--- elipsis operator catches all exceptions
+  catch(...) // <--- ellipsis operator catches all exceptions
   {
     prms.set_exception(current_exception());
   }

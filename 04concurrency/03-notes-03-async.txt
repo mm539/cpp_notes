@@ -1,17 +1,11 @@
-1. async vs thread
+1. async vs promise&future
 2. std::launch
 3. tasks vs threads
 
 ==========================================================================
 
-1. async vs thread
-
-  async is an alternative to thread. here are some key differences:
-    i. with async, TASKS are created; with threads, threads are created
-
-    ii. with async, the system decides whether to run the code in parallel or synchronously (unless the programmer specifies which should be run)
-
-    iii. async uses a lot less code
+1. async vs promise&future
+     - async uses a lot less code
       - no thread
       - no promise
       - no special function that requires moving a promise into it
@@ -61,4 +55,4 @@
     3. Resource usage can be described as heavy-weight for _____.
     4. Resource usage can be described as light-weight for _____.
     5. Primary use-cases for _____ are applications where latency needs to be improved.
-    66. Primary use-cases for _____ are applications where throughput needs to be high.
+    6. Primary use-cases for _____ are applications where throughput needs to be high.

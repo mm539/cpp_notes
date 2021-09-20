@@ -6,6 +6,10 @@ using namespace std;
 /* 
   This example is about running multiple threads at once
   #forkjoinparallelism
+
+  Things to note:
+  1. EXAMPLE 1: HELLO (Problem: interleaving)
+  2. EXAMPLE 2: GOODBYE (Solution: add time delay to fn)
 */
 
 void printHello(){
@@ -23,7 +27,7 @@ int main()
 {
   vector<thread> threads;
 
-  // PART 1: HELLO (Problem with interleaving)
+  // EXAMPLE 1: HELLO (Problem with interleaving)
   for (size_t i = 0; i < 5; i++)
   {
     /*
@@ -69,7 +73,7 @@ int main()
   vector<thread>().swap(threads); // clear x, reallocate memory
 
 
-  // PART 2: GOODBYE (Solution: add time delay to fn)
+  // EXAMPLE 2: GOODBYE (Solution: add time delay to fn)
   // note: although the time delay gives us the desired output, it is not a good solution to the problem of multiple threads accessing the same resource (in this case, cout)
   // what if each thread had spent more time sending to cout than the added time delay?
   // the solution, as will be seen later, is a message queue (that utilizes a monitor object pattern)

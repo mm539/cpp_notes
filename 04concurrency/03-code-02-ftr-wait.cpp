@@ -15,6 +15,8 @@ using namespace std;
 
       see 03-notes-02-prms-ftrs.txt
 
+    3. When might we want to separate the waiting and the getting?
+
 */
 
 void computeSqrt(promise<double> && prms, double d){
@@ -22,8 +24,22 @@ void computeSqrt(promise<double> && prms, double d){
   prms.set_value(sqrt(d));
 }
 
+
+std::string ToString(future_status s){
+  switch (s){
+    case future_status::ready:   return "Ready";
+    case future_status::timeout: return "Timeout";
+    case future_status::deferred:return "Deferred";
+    default:      return "unknown";
+  }
+}
+
 int main(){
+
   double d = 43.5;
+
+  // EXAMPLE 1
+  cout << "EXAMPLE 1\n";
   promise<double> prms;
   future<double> ftr = prms.get_future();
   thread t(computeSqrt, move(prms), d);
@@ -33,11 +49,11 @@ int main(){
   if (status == future_status::ready){
     cout << "Result: " << ftr.get() << endl;
   } else{
+    cout << "Status: " << ToString(status) << endl;
     cout << "Result Unvailable\n";
   }
 
   t.join();
-
 
   return 0;
 }
