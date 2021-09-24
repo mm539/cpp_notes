@@ -1,0 +1,76 @@
+TEMPLATES
+
+1. function templates
+2. class templates
+3. template specialization
+4. a restriction to keep in mind
+5. notes
+
+=============================================================
+
+1. function templates
+
+  - function templates are special functions that can operate with generic types. this allows us to create a function template whose functionality can be adapted to more than one type of class
+
+  template parameters
+  - a template parameter is a special kind of parameter that can be used to pass a type as an argument
+
+  template <class identifier> function_declaration;
+  template <typename identifier> function_declaration;
+
+=============================================================
+
+2. class templates
+
+  - templates support the creation of GENERIC classes.
+  - class templates can declare and implement generic attributes for use by generic methods. ???
+
+
+  look at the syntax of the definition of a member function:
+  template <class T>
+  T className<T>::fnName(){}
+
+  - 1st T is the template parameter
+  - 2nd T refers to the turn type of the function
+  - 3rd T specifies that this function's template parameter is also the class template parameter
+
+
+=============================================================
+
+3. template specialization
+
+  If we want to define a different implementation for a template why a specfic type is passed as a template parameter, we can declare a specialization of that template.
+
+  The syntax used in class template specialization is:
+
+  template<> class className <type> {}
+
+  The empty <> is to declare it as a template specialization.
+
+=============================================================
+
+4. a restriction to keep in mind
+
+  there is SO MUCH more to read about templates. but I can't be arsed to do it.
+  however, one important thing to note:
+
+  templates are not normal functions or classes.
+  a template implementation (definition) cannot be separated from its declaration.
+  ---> usually declarations go in a header file and definitions in the cpp file.
+    ---> we CANT do this with templates
+
+
+  source:
+  http://www.cplusplus.com/doc/oldtutorial/templates/
+  """
+  When projects grow it is usual to split the code of a program in different source code files. In these cases, the interface and implementation are generally separated. Taking a library of functions as example, the interface generally consists of declarations of the prototypes of all the functions that can be called. These are generally declared in a "header file" with a .h extension, and the implementation (the definition of these functions) is in an independent file with c++ code.
+
+  Because templates are compiled when required, this forces a restriction for multi-file projects: the implementation (definition) of a template class or function must be in the same file as its declaration. That means that we cannot separate the interface in a separate header file, and that we must include both interface and implementation in any file that uses the templates.
+  """
+
+=============================================================
+
+5. notes
+
+  eli bendersky's website has wonderful information about templates.
+    - go to the archives, go to the posts tagged by c++, then ctrl + f "template"

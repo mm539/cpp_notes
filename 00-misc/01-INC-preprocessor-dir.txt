@@ -1,0 +1,11 @@
+
+1. What are preprocessor directives?
+2. What are macro definitions?
+  - macro definitions
+  - macro functions
+
+INCOMPLETE
+3. line control
+4. error directive
+5. pragma
+http://www.cplusplus.com/doc/tutorial/preprocessor/

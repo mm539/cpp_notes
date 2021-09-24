@@ -1,0 +1,53 @@
+
+1. the keyword static
+2. static storage duration
+3. non-initialization vs zero initialization
+...
+x. Static Member Variables and Methods
+
+=====================================================================
+
+1. the keyword static
+
+  The keyword static has different meanings depending on where it's used:
+    i. declarations of namespace members with static storage duration and internal linkage
+    ii. definitions of block scope variables with static storage duration and initialized once
+    iii. declarations of class members not bound to specific instances
+
+  
+
+=====================================================================
+
+2. static storage duration
+
+  Objects declared with the static storage class specifier have static storage duration, which means that memory for these objects is allocated when the program begins running and is freed when the program terminates.
+
+=====================================================================
+
+3. non-initialization vs zero initialization of static vars
+
+  If some types are not initialized in the global scope, then they may be initialized to zero or a zero like value, OR they may not be initialized at all (so no memory will be allocated), depending on the system.
+
+  For classes, there won't be any initialization regardless of the system.
+
+  BOTTOM LINE: ALWAYS INITIALIZE STATIC GLOBAL VARIABLES, STATIC MEMBERS
+
+  As a corollary, static global variables should be of type const.
+
+=====================================================================
+
+x. Static Member Variables and Methods
+
+  i. A static member belongs to the entire class, instead of to a specific instance of the class.
+
+  ii.. A static member is created only once and then shared by all instances of the class.
+    --> so if a static member gets changed, then all members of the class will see that change
+
+  iii. static members can be defined/instantiated
+    i. within their class IF the keyword constexpr is also used (remember: constexpr tells the compiler to evalute a value at compile time)
+
+    ii. in the global scope.
+
+
+  iv. We can use static methods to use functions without ever creating an instance of a class.
+    - Static methods can be used to group together related operations.

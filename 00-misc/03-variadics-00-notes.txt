@@ -1,0 +1,43 @@
+
+1. ellipsis
+2. <cstdarg>
+
+?. sources
+
+=============================================================
+
+1. ellipsis
+
+  i. Ellipses began as a c++ operator that allow the passing of a variable number of arguments to a function. 
+
+    The function declaration would look something like this:
+    MyFunction(int i, ...);
+
+  ii. c++11 introduced parameter packs and variadic templates to improve on ellipsis-like functionality. However, usability prevented their widespread adoption (they are a pain in the ass to use)
+    - see 03-variadics-02-templates.cpp for examples.
+
+  iii. c++17 introduced fold expressions.
+    - supposedly these are easier to use - something to research another day
+
+  iv. Ellipses are also used in other contexts.
+    - sizeof... vs sizeof
+    - try-catch blocks
+
+=============================================================
+
+2. <cstdarg>
+
+  #include <cstdarg>
+    This header defines macros to access the individual arguments of a list of unnamed arguments whose number and types are not known to the called function.
+
+
+=============================================================
+
+
+
+=============================================================
+
+?. Sources
+
+  https://www.learncpp.com/cpp-tutorial/ellipsis-and-why-to-avoid-them/
+  http://www.cplusplus.com/articles/EhvU7k9E/

@@ -1,0 +1,13 @@
+Unary Predicate
+
+A unary function is one that accepts one argument.
+A unary predicate is a unary function that returns a bool.
+Similarly, a binary predicate is a binary function that returns a bool.
+Predicates are hence functions that help make a decision by returning true or false.
+
+=========================================================================
+
+Initialize VS Instantiate
+
+
+So in short, initialize is the term commonly used with variables whenever u assign a value to it before executing, where as instantiation refers to assigning an Object to a class(which in turn act as the reference to variables and methods/functions of that class).
